@@ -46,3 +46,31 @@ function isPalindrome(x: number): boolean {
     return false;
   }
 }
+
+// 1. Two Sum
+// Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You can return the answer in any order.
+
+function twoSum(nums: number[], target: number): number[] {
+  let result: number[] = [];
+  const countMap = new Map<number, number>();
+
+  nums.forEach((num, index) => {
+    countMap.set(num, index);
+  });
+
+  for (let index = 0; index < nums.length; index++) {
+    const num = nums[index];
+    const e = countMap.get(target - num);
+
+    if (e !== undefined) {
+      if (e !== index) {
+        result.push(index, e);
+        break;
+      }
+    }
+  }
+
+  return result;
+}
